@@ -1,0 +1,174 @@
+:root{
+    --color-white: #fff;
+    --color-dark1: #272727;
+    --color-dark2: #2d2d2d;
+    --color-dark3: #414141;
+    --color-dark4: #1c1c1c;
+    --color-dark5: #343434;
+    --color-purple:#b040ff;
+    --color-blue: #0e2ac7;
+    --color-red: red;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+#header{
+    height: 80px;
+    background-color: var(--color-dark1);
+    box-shadow: 1px 1px 4px var(--color-dark3);
+    
+}
+
+#header a{
+    text-align: center;
+    justify-content: center;
+    top: 15px;
+    left: 33%;
+    font-size: 40px;
+    position: absolute;
+    color: white;
+    text-decoration: none;
+}
+body{
+    background-color: var(--color-dark3);
+
+}
+/* O jogo */
+.board{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+    margin-top: 150px;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before{
+    background: rgb(93, 105, 207) !important;
+}
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.cell.x, 
+.cell.circle{
+    cursor: not-allowed;
+}
+
+.cell:nth-child(1), 
+.cell:nth-child(2), 
+.cell:nth-child(3){
+    border-top: none;
+}
+
+.cell:nth-child(1), 
+.cell:nth-child(4),
+.cell:nth-child(7){
+    border-left: none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9){
+    border-right: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9){
+    border-bottom: none;
+}
+
+/* Marcação X */
+.cell.x::before, 
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before{
+    content: "";
+    height: calc(100px * 0.15);
+    width: calc(100px * 0.9);
+    background-color: var(--color-blue);
+    position: absolute;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before{
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after{
+    transform: rotate(-45deg);
+}
+
+/* Marcação Circulo */
+.cell.circle::before, 
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+    content: "";
+    height: calc(100px * 0.85);
+    width: calc(100px * 0.85);
+    background-color: var(--color-red);
+    position: absolute;
+    border-radius: 50%;
+}
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+    background: rgb(238, 120, 120) !important;
+}
+
+/* Mensagem de Vitória */
+.winning_message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); 
+    flex-direction: column;
+}
+
+.winning_message_button{
+    font-size: 40px;
+    background-color: rgba(55, 185, 131, 1);
+    border: rgba(55, 185, 131, 1);
+    border-style: inset;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+}
+
+.winning_message_button:hover{
+    background-color: white;
+    color: rgba(55, 185, 131, 1);
+}
+
+.victory_text{
+    color: white;
+    font-size: 70px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.show-winning-message {
+    display: flex;
+  }
